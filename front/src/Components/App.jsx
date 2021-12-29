@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
-import { nanoid } from 'nanoid';
+
+// Components
+import Chat from './Chat';
 
 function App() {
   const [state, setState] = useState({ message: '', name: '' });
@@ -32,15 +34,6 @@ function App() {
     console.log(state);
   };
 
-  const renderChat = () => {
-    return chat.map(({ name, message }) => (
-      <div key={nanoid()}>
-        <h3>
-          {name}: <span>{message}</span>
-        </h3>
-      </div>
-    ));
-  };
   return (
     <div>
       <form onSubmit={onMessageSubmit}>
@@ -67,10 +60,7 @@ function App() {
         </div>
         <button>Send Message</button>
       </form>
-      <div className="render-chat">
-        <h1>Chat Log</h1>
-        {renderChat()}
-      </div>
+      <Chat chat={chat} />
     </div>
   );
 }
