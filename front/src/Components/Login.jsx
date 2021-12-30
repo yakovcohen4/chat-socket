@@ -1,4 +1,8 @@
 import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+//Style
+import '../login-style.css';
 
 function Login() {
   /***** useState *****/
@@ -7,10 +11,13 @@ function Login() {
   /***** REFS *****/
   const userNameInput = useRef('');
 
+  const navigate = useNavigate();
+
   const login = () => {
     const userName = userNameInput.current.value;
 
     sessionStorage.setItem('userName', userName);
+    navigate('/chat');
   };
 
   return (
