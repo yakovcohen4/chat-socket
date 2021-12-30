@@ -14,12 +14,13 @@ const io = require('socket.io')(server, {
 
 io.on('connection', socket => {
   console.log('new connect with ' + socket.id);
+
   socket.on('message', ({ name, message }) => {
     io.emit('messageBack', { name, message });
   });
 
   socket.on('disconnect', () => {
-    io.emit('messageBack', { name: 'wow', message: 'render' });
+    io.emit('messageBack', { name: socket.id, message: 'disconnect' });
   });
 });
 
