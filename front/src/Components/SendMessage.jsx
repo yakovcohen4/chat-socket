@@ -6,6 +6,9 @@ function SendMessage({ setChat }) {
 
   const [state, setState] = useState({ message: '' });
 
+  const [users, setUsers] = useState('');
+  console.log(users);
+
   const socketRef = useRef();
 
   useEffect(() => {
@@ -18,6 +21,11 @@ function SendMessage({ setChat }) {
         return [...prevState, { name, message }];
       });
     });
+
+    socketRef.current.on('online', ({ listOfUsers }) => {
+      setUsers(listOfUsers);
+    });
+    // });
 
     // return () => socketRef.current.disconnect();
   }, []);
@@ -37,17 +45,20 @@ function SendMessage({ setChat }) {
   return (
     <div>
       <form onSubmit={onMessageSubmit}>
-        <h1>Messenger</h1>
-        <div>
-          <label htmlFor="input-message">message: </label>
+        <div className="send-message">
+          {/* <label htmlFor="input-message">message: </label> */}
           <input
             name="message"
             onChange={e => onTextChange(e)}
             value={state.message}
+            minLength={1}
             id="input-message"
+            // className="send-message"
           />
+          <button className="send-btn">
+            <i className="fas fa-arrow-right"></i>
+          </button>
         </div>
-        <button>Send Message</button>
       </form>
     </div>
   );
