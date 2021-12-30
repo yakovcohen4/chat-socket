@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 // Components
 import Chat from './Chat';
+import Login from './Login';
 import MessageForm from './MessageForm';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <div>
       <MessageForm setChat={setChat} />
       <Chat chat={chat} />
+      <Login />
     </div>
   );
 }
