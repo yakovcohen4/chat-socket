@@ -9,7 +9,9 @@ function SendMessage({ setChat }) {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect('http://localhost:4000');
+    socketRef.current = io.connect('http://localhost:4000', {
+      auth: { user: name },
+    });
 
     socketRef.current.on('messageBack', ({ name, message }) => {
       setChat(prevState => {
@@ -27,6 +29,7 @@ function SendMessage({ setChat }) {
   const onMessageSubmit = e => {
     e.preventDefault();
     const { message } = state;
+    if (message === '') return;
     socketRef.current.emit('message', { name, message });
     setState({ message: '', name });
     console.log(state);
