@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
 
-function MessageForm({ setChat }) {
+function SendMessage({ setChat }) {
   const name = sessionStorage.getItem('userName');
 
   const [state, setState] = useState({ message: '' });
@@ -42,7 +42,6 @@ function MessageForm({ setChat }) {
             onChange={e => onTextChange(e)}
             value={state.message}
             id="input-message"
-            variant="outlined"
           />
         </div>
         <button>Send Message</button>
@@ -51,4 +50,4 @@ function MessageForm({ setChat }) {
   );
 }
 
-export default MessageForm;
+export default SendMessage;

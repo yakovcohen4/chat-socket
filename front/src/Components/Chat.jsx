@@ -1,17 +1,16 @@
-import React from 'react';
-import { nanoid } from 'nanoid';
+import React, { useState } from 'react';
 
-function Chat({ chat }) {
+//Components
+import Messages from './Messages';
+import SendMessage from './SendMessage';
+
+function Chat() {
+  const [chat, setChat] = useState([]);
+
   return (
-    <div className="chat-comp">
-      <h1>Chat</h1>
-      {chat.map(({ name, message }) => (
-        <div key={nanoid()} className="message">
-          <h3>
-            {name}: <span>{message}</span>
-          </h3>
-        </div>
-      ))}
+    <div className="chat">
+      <Messages chat={chat} />
+      <SendMessage setChat={setChat} />
     </div>
   );
 }
