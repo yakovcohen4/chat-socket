@@ -1,5 +1,5 @@
 // data of users
 
-const connectedUsers = [];
+let connectedUsers = [];
 
 module.exports = connectedUsers;
