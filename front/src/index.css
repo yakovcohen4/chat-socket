@@ -173,3 +173,19 @@ h3 {
 }
 /* message input */
 /* message input */
+
+/* rooms */
+.room {
+  border-bottom: #58b666 1px solid;
+  padding-left: 10px;
+  font-size: 1.1em;
+}
+.room:hover {
+  font-style: italic;
+}
+.room::marker {
+  background-color: #58b666;
+}
+/* .room {
+  background-color: #58b666;
+} */
