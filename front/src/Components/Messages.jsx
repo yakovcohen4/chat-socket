@@ -1,12 +1,12 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 
-function Messages({ chat }) {
+function Messages({ chat, room }) {
   const userName = sessionStorage.getItem('userName'); // get username - me or you ?
   return (
     <div className="chat-comp" id="chat">
-      <h1>Messages</h1>
-      {chat.map(({ name, message }) => (
+      <h1>Messages {room}</h1>
+      {chat[room].map(({ name, message }) => (
         <div key={nanoid()}>
           <li
             className={
