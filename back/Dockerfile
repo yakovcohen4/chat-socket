@@ -1,0 +1,15 @@
+# Use Node v4 as the base image.
+FROM node:14.4-alpine3.11
+
+WORKDIR /back
+
+# Add everything in the current directory to our image, in the 'app' folder.
+COPY . /package.json
+
+# Install dependencies
+RUN npm install 
+
+COPY . .
+
+# Run our app.
+CMD ["npm", "start"]
