@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-function ListOfUsers() {
-  const listOfUsers = ['yakov', 'rama', 'yakov33'];
+function ListOfUsers({ users, rooms, setRoom }) {
   const userName = sessionStorage.getItem('userName'); // get username
-  const arrWithoutUsername = listOfUsers.filter(user => user !== userName);
+
+  let arrWithoutUsername = users.filter(user => user.name !== userName);
+
   return (
     <ul>
       {arrWithoutUsername.map(user => {
         return (
-          <li>
+          <li key={user.id}>
             <div>
               <h3>
                 <span className="status black"></span>
-                {user}
+                {user.name}
               </h3>
             </div>
           </li>
+        );
+      })}
+      {rooms.map(room => {
+        return (
+          <div key={room} className="room" onClick={() => setRoom(room)}>
+            {room}
+          </div>
         );
       })}
     </ul>
